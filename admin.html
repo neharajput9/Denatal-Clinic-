@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Manjul Dental Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body class="admin-body">
+
+  <!-- ADMIN LOGIN SECTION (Unauthorized Gate) -->
+  <div class="admin-login-wrapper" id="adminLoginSection" style="display: flex;">
+    <div class="admin-login-card">
+      <div class="admin-login-header">
+        <div class="login-logo-icon"><i class="fas fa-user-shield"></i></div>
+        <h2>Admin Portal Gate</h2>
+        <p>Authorized Admin Access Only. Sign in to view and manage clinic appointments.</p>
+      </div>
+
+      <!-- Security Alert Message -->
+      <div class="alert-danger-login" id="loginErrorAlert" style="display: none;"></div>
+
+      <form onsubmit="handleAdminLogin(event)" class="admin-login-form">
+        <div class="form-group">
+          <label for="adminUsername"><i class="fas fa-user"></i> Admin Username / Email</label>
+          <input type="text" id="adminUsername" placeholder="Enter username or email" required
+            autocomplete="username" />
+        </div>
+
+        <div class="form-group">
+          <label for="adminPassword"><i class="fas fa-lock"></i> Admin Password</label>
+          <div class="input-group-pass">
+            <input type="password" id="adminPassword" placeholder="Enter password" required
+              autocomplete="current-password" />
+            <button type="button" class="pass-toggle-btn"
+              onclick="togglePasswordVisibility('adminPassword', 'passToggleIcon')" title="Toggle password visibility">
+              <i class="fas fa-eye" id="passToggleIcon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-remember-row">
+          <label class="checkbox-container">
+            <input type="checkbox" id="adminRememberMe" checked />
+            Remember Me
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-login">
+          <i class="fas fa-right-to-bracket"></i> Sign In to Admin Dashboard
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <a href="index.html" class="back-home-link"><i class="fas fa-arrow-left"></i> Return to Main Website</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ADMIN DASHBOARD SECTION (Authorized Only) -->
+  <div id="adminDashboardSection" style="display: none;">
+
+    <!-- ADMIN NAVBAR -->
+    <nav class="admin-navbar">
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+          <div class="logo-icon"><i class="fas fa-tooth"></i></div>
+          <div class="logo-text">
+            <span class="logo-main">Manjul Dental</span>
+            <span class="logo-sub">Admin Portal</span>
+          </div>
+        </a>
+        <div class="admin-nav-actions">
+          <button class="btn btn-outline-light btn-sm" id="openSettingsBtn" onclick="toggleSettingsModal()">
+            <i class="fas fa-gear"></i> Google Sheets Sync
+          </button>
+          <button class="btn btn-outline-light btn-sm" onclick="toggleChangePasswordModal()">
+            <i class="fas fa-key"></i> Change Password
+          </button>
+          <a href="index.html" class="btn btn-outline-light btn-sm">
+            <i class="fas fa-arrow-left"></i> Main Website
+          </a>
+          <div class="admin-user-pill">
+            <span class="user-badge"><i class="fas fa-user-check"></i> Admin Authorized</span>
+            <button class="btn btn-danger btn-sm" onclick="handleAdminLogout()" title="Logout from Admin Panel">
+              <i class="fas fa-right-from-bracket"></i> Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="admin-main">
+      <div class="container-fluid">
+
+        <!-- DASHBOARD HEADER -->
+        <div class="admin-header-row">
+          <div>
+            <h1 class="admin-title">Appointments & Patient Management</h1>
+            <p class="admin-subtitle">Track, filter daywise, and manage bookings for Nashik & Shindkheda clinics.</p>
+          </div>
+          <div class="admin-header-buttons">
+            <button class="btn btn-outline-dark" onclick="resetToSampleData()">
+              <i class="fas fa-rotate"></i> Load Sample Data
+            </button>
+            <button class="btn btn-primary" onclick="exportAppointmentsToCSV()">
+              <i class="fas fa-file-excel"></i> Export to Excel (.csv)
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI METRIC CARDS -->
+        <div class="admin-kpi-grid">
+          <div class="kpi-card kpi-blue">
+            <div class="kpi-icon"><i class="fas fa-calendar-check"></i></div>
+            <div class="kpi-info">
+              <span class="kpi-label">Total Bookings</span>
+              <h3 class="kpi-value" id="kpiTotal">0</h3>
+            </div>
+          </div>
+          <div class="kpi-card kpi-teal">
+            <div class="kpi-icon"><i class="fas fa-clock"></i></div>
+            <div class="kpi-info">
+              <span class="kpi-label">Today's Appointments</span>
+              <h3 class="kpi-value" id="kpiToday">0</h3>
+            </div>
+          </div>
+          <div class="kpi-card kpi-primary">
+            <div class="kpi-icon"><i class="fas fa-hospital"></i></div>
+            <div class="kpi-info">
+              <span class="kpi-label">Nashik Clinic</span>
+              <h3 class="kpi-value" id="kpiNashik">0</h3>
+            </div>
+          </div>
+          <div class="kpi-card kpi-dark">
+            <div class="kpi-icon"><i class="fas fa-clinic-medical"></i></div>
+            <div class="kpi-info">
+              <span class="kpi-label">Shindkheda Clinic</span>
+              <h3 class="kpi-value" id="kpiShindkheda">0</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- FILTER CONTROLS & LOCATION TABS -->
+        <div class="admin-controls-card">
+
+          <!-- Location Tabs -->
+          <div class="admin-tabs">
+            <button class="admin-tab active" id="tabAll" onclick="setClinicFilter('all')">
+              <i class="fas fa-layer-group"></i> All Locations
+            </button>
+            <button class="admin-tab" id="tabNashikClinic" onclick="setClinicFilter('nashik')">
+              <i class="fas fa-location-dot" style="color: #0077b6;"></i> Nashik Clinic
+            </button>
+            <button class="admin-tab" id="tabShindkhedaClinic" onclick="setClinicFilter('shindkheda')">
+              <i class="fas fa-location-dot" style="color: #0096c7;"></i> Shindkheda Clinic
+            </button>
+            <button class="admin-tab" id="tabContacts" onclick="setClinicFilter('contacts')">
+              <i class="fas fa-envelope"></i> General Contact Inquiries
+            </button>
+          </div>
+
+          <!-- Filters Row: Date & Status & Search -->
+          <div class="admin-filters-bar">
+            <!-- Daywise Date Picker -->
+            <div class="filter-group">
+              <label for="adminDateFilter"><i class="fas fa-calendar-day"></i> Filter by Day:</label>
+              <div class="date-filter-wrap">
+                <input type="date" id="adminDateFilter" onchange="renderAdminDashboard()" />
+                <button class="btn-filter-quick" onclick="setFilterToday()">Today</button>
+                <button class="btn-filter-quick" onclick="setFilterTomorrow()">Tomorrow</button>
+                <button class="btn-filter-quick" onclick="clearDateFilter()">All Days</button>
+              </div>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="filter-group">
+              <label for="adminStatusFilter"><i class="fas fa-filter"></i> Status:</label>
+              <select id="adminStatusFilter" onchange="renderAdminDashboard()">
+                <option value="all">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="filter-group filter-search">
+              <label for="adminSearchInput"><i class="fas fa-magnifying-glass"></i> Search Patient:</label>
+              <input type="text" id="adminSearchInput" placeholder="Name, Phone, or Service..."
+                oninput="renderAdminDashboard()" />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- APPOINTMENTS TABLE -->
+        <div class="table-container-card">
+          <div class="table-header-info">
+            <h3 id="tableSectionTitle"><i class="fas fa-list"></i> Appointments Record</h3>
+            <span class="results-badge" id="resultsCount">Showing 0 entries</span>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table" id="adminAppointmentsTable">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Patient Name</th>
+                  <th>Contact Phone</th>
+                  <th>Clinic</th>
+                  <th>Date</th>
+                  <th>Time Slot</th>
+                  <th>Treatment / Service</th>
+                  <th>Notes</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="appointmentsTbody">
+                <!-- Dynamically populated by JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State Message -->
+          <div class="empty-state" id="emptyState" style="display: none;">
+            <i class="fas fa-calendar-xmark"></i>
+            <h4>No Appointments Found</h4>
+            <p>No bookings match the selected date or clinic filter. Try selecting "All Days" or clearing filters.</p>
+            <button class="btn btn-outline-dark btn-sm" onclick="clearDateFilter(); setClinicFilter('all');">
+              Clear Filters
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- GOOGLE SHEETS SETTINGS MODAL -->
+    <div class="modal-backdrop" id="settingsModal" style="display: none;">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3><i class="fas fa-file-csv" style="color: #107c41;"></i> Google Sheets Sync Setup</h3>
+          <button class="modal-close" onclick="toggleSettingsModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Connect your Google Sheet Apps Script URL below. Every new appointment filled by a patient will
+            automatically
+            sync to your Google Spreadsheet in real time!</p>
+
+          <div class="form-group" style="margin-top: 16px;">
+            <label for="googleScriptUrlInput"><strong>Google Apps Script Web App URL:</strong></label>
+            <input type="url" id="googleScriptUrlInput" placeholder="https://script.google.com/macros/s/.../exec"
+              style="width: 100%; padding: 10px; font-size: 0.85rem;" />
+          </div>
+          <div class="alert-info"
+            style="background: #e8f4fd; padding: 12px; border-radius: 8px; font-size: 0.82rem; margin-top: 12px; color: #1e3a8a;">
+            <i class="fas fa-circle-info"></i> <strong>How to get your Web App URL:</strong><br />
+            In your Google Apps Script editor, click <strong>Deploy &gt; New deployment &gt; Web app</strong>. Set
+            <em>"Who has access"</em> to <strong>"Anyone"</strong>, then copy the Web App URL and paste it here!
+          </div>
+        </div>
+        <div class="modal-footer" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+          <button class="btn btn-outline-dark btn-sm" onclick="toggleSettingsModal()">Cancel</button>
+          <button class="btn btn-primary btn-sm" onclick="saveGoogleScriptUrl()">Save &amp; Connect Sheet</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHANGE PASSWORD MODAL -->
+    <div class="modal-backdrop" id="changePasswordModal" style="display: none;">
+      <div class="modal-card" style="max-width: 460px;">
+        <div class="modal-header">
+          <h3><i class="fas fa-key" style="color: var(--primary);"></i> Change Admin Password</h3>
+          <button class="modal-close" onclick="toggleChangePasswordModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p style="font-size: 0.86rem; color: var(--text-light); margin-bottom: 16px;">
+            Update your administrator login password.
+          </p>
+
+          <div id="changePassAlert" style="display: none;"></div>
+
+          <form onsubmit="handleChangePassword(event)">
+            <div class="form-group">
+              <label for="currentPasswordInput">Current Password:</label>
+              <input type="password" id="currentPasswordInput" required placeholder="Enter current password" />
+            </div>
+            <div class="form-group">
+              <label for="newPasswordInput">New Password (min 6 characters):</label>
+              <input type="password" id="newPasswordInput" required placeholder="Enter new password" minlength="6" />
+            </div>
+            <div class="form-group">
+              <label for="confirmPasswordInput">Confirm New Password:</label>
+              <input type="password" id="confirmPasswordInput" required placeholder="Re-enter new password" />
+            </div>
+            <div class="modal-footer" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+              <button type="button" class="btn btn-outline-dark btn-sm"
+                onclick="toggleChangePasswordModal()">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-sm">Update Password</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Initialize admin authentication on load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initAdminAuth === 'function') {
+        initAdminAuth();
+      }
+    });
+  </script>
+</body>
+
+</html>

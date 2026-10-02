@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Appointment | Manjul Dental Clinic | Dr. Pranav Gosavi</title>
+  <meta name="description" content="Book your dental appointment online at Manjul Dental Clinic. Choose your preferred clinic — Nashik or Shindkheda — and select a convenient time." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon"><i class="fas fa-tooth"></i></div>
+        <div class="logo-text">
+          <span class="logo-main">Manjul Dental</span>
+          <span class="logo-sub">Clinic</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="appointment.html" class="nav-link nav-btn-link"><button class="btn-book-nav">Book Appointment</button></a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <span class="section-tag">Easy Online Booking</span>
+      <h1>Book Your Appointment</h1>
+      <p>Choose your preferred clinic and select a convenient time slot. We'll confirm within 24 hours.</p>
+    </div>
+  </section>
+
+  <!-- APPOINTMENT SECTION -->
+  <section class="appointment-section" id="appointment">
+    <div class="container">
+      <div class="appointment-grid">
+
+        <!-- INFO SIDE -->
+        <div class="appointment-info">
+          <h2>Visit Us at Your Nearest Clinic</h2>
+          <p>Fill out the form and we will get back to you shortly to confirm your appointment. For urgent queries, feel free to WhatsApp us directly.</p>
+
+          <div class="info-item">
+            <i class="fas fa-hospital"></i>
+            <div>
+              <strong>Nashik Clinic</strong>
+              <span>Mon – Fri &nbsp;|&nbsp; 9:00 AM – 8:00 PM</span>
+              <span style="margin-top: 4px;"><a href="https://maps.app.goo.gl/ySdanEnMPjkDjXnF7" target="_blank" rel="noopener" style="color: var(--primary); font-weight: 500;"><i class="fas fa-location-dot"></i> View Location Map</a></span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-hospital"></i>
+            <div>
+              <strong>Shindkheda Clinic</strong>
+              <span>Sun – Mon &nbsp;|&nbsp; 8:00 AM – 8:00 PM</span>
+              <span style="margin-top: 4px;"><a href="https://maps.app.goo.gl/wkMSrKiQsxHWEBUn7" target="_blank" rel="noopener" style="color: var(--primary); font-weight: 500;"><i class="fas fa-location-dot"></i> View Location Map</a></span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-user-doctor"></i>
+            <div>
+              <strong>Dr. Pranavkumar K. Gosavi</strong>
+              <span>BDS (M.U.H.S.) Reg. No. A17020</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <i class="fab fa-whatsapp" style="color:#25d366"></i>
+            <div>
+              <strong>WhatsApp Booking</strong>
+              <span>Chat with us for instant appointment</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 28px; padding: 22px; background: linear-gradient(135deg, #e8f4fd, #caf0f8); border-radius: 14px; border: 1px solid #90e0ef;">
+            <h4 style="font-size:0.95rem; color: var(--text-dark); margin-bottom: 10px;">
+              <i class="fas fa-circle-info" style="color: var(--primary);"></i>
+              &nbsp;What to Bring
+            </h4>
+            <ul style="list-style: none; padding: 0;">
+              <li style="font-size:0.85rem; color:var(--text-mid); margin-bottom: 6px; display: flex; gap: 8px;">
+                <i class="fas fa-check" style="color:var(--primary); margin-top:3px;"></i> Government ID proof
+              </li>
+              <li style="font-size:0.85rem; color:var(--text-mid); margin-bottom: 6px; display: flex; gap: 8px;">
+                <i class="fas fa-check" style="color:var(--primary); margin-top:3px;"></i> Previous dental records (if any)
+              </li>
+              <li style="font-size:0.85rem; color:var(--text-mid); display: flex; gap: 8px;">
+                <i class="fas fa-check" style="color:var(--primary); margin-top:3px;"></i> List of current medications
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- BOOKING FORM -->
+        <div class="form-card" id="formCard">
+          <h3>📅 Schedule Your Visit</h3>
+          <form id="appointmentForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Rahul" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Sharma" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="rahul@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="clinic">Select Clinic *</label>
+              <select id="clinic" name="clinic" required>
+                <option value="">-- Select a Location --</option>
+                <option value="nashik">Nashik Clinic (Mon–Fri, 9AM–8PM)</option>
+                <option value="shindkheda">Shindkheda Clinic (Sun–Mon, 8AM–8PM)</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="apptDate">Preferred Date *</label>
+                <input type="date" id="apptDate" name="apptDate" required />
+              </div>
+              <div class="form-group">
+                <label for="apptTime">Preferred Time *</label>
+                <select id="apptTime" name="apptTime" required>
+                  <option value="">-- Select --</option>
+                  <option>08:00 AM</option>
+                  <option>09:00 AM</option>
+                  <option>10:00 AM</option>
+                  <option>11:00 AM</option>
+                  <option>12:00 PM</option>
+                  <option>02:00 PM</option>
+                  <option>03:00 PM</option>
+                  <option>04:00 PM</option>
+                  <option>05:00 PM</option>
+                  <option>06:00 PM</option>
+                  <option>07:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="service">Treatment / Service *</label>
+              <select id="service" name="service" required>
+                <option value="">-- Select a Service --</option>
+                <option>Teeth Cleaning & Scaling</option>
+                <option>Teeth Whitening</option>
+                <option>Root Canal Treatment</option>
+                <option>Braces & Clear Aligners</option>
+                <option>Dental Implants</option>
+                <option>Dental Crowns & Bridges</option>
+                <option>Paediatric Dentistry</option>
+                <option>Dentures & Prosthetics</option>
+                <option>Oral Surgery</option>
+                <option>General Checkup / Consultation</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Additional Notes</label>
+              <textarea id="message" name="message" placeholder="Any specific concerns or questions..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit" id="submitBtn">
+              <i class="fas fa-calendar-check"></i> Confirm Appointment
+            </button>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="logo-icon"><i class="fas fa-tooth"></i></div>
+          <div class="logo-text">
+            <span class="logo-main">Manjul Dental</span>
+            <span class="logo-sub">Clinic</span>
+          </div>
+        </div>
+        <p>Expert dental care by Dr. Pranavkumar K. Gosavi [BDS (M.U.H.S.) Reg. No. A17020]. Serving patients across Nashik and Shindkheda.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="appointment.html">Book Appointment</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-clinic">
+        <h4>Nashik Clinic</h4>
+        <p><i class="fas fa-location-dot"></i> <a href="https://maps.app.goo.gl/ySdanEnMPjkDjXnF7" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Manjul Dental Clinic, Kalbhairav chowk, opp. Hire Vidyalaya, Savata Nagar, Nashik, Maharashtra 422008</a></p>
+        <p><i class="fas fa-clock"></i> Mon – Fri: 9 AM – 8 PM</p>
+      </div>
+      <div class="footer-clinic">
+        <h4>Shindkheda Clinic</h4>
+        <p><i class="fas fa-location-dot"></i> <a href="https://maps.app.goo.gl/wkMSrKiQsxHWEBUn7" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">Manjul Dental Clinic, Keshranand Complex, Complex No. 23, Station Road, MH SH 11, Shindkhede, Maharashtra 425406</a></p>
+        <p><i class="fas fa-clock"></i> Sun – Mon: 8 AM – 8 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Manjul Dental Clinic. All rights reserved. | Designed with ❤️</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919665047888" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- APPOINTMENT SUBMISSION SUCCESS POPUP MODAL -->
+  <div class="modal-backdrop" id="appointmentSuccessModal" style="display: none;" onclick="closeAppointmentModal(event)">
+    <div class="modal-card" style="max-width: 490px; text-align: center; position: relative; animation: modalPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeAppointmentModal()" title="Close popup" style="position: absolute; top: 16px; right: 20px; font-size: 1.6rem;">&times;</button>
+      
+      <div style="margin-top: 6px; margin-bottom: 14px;">
+        <div style="width: 76px; height: 76px; background: linear-gradient(135deg, #dcfce7, #a7f3d0); color: #059669; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 2.6rem; box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.35); border: 3px solid #6ee7b7;">
+          <i class="fas fa-face-smile"></i>
+        </div>
+      </div>
+      
+      <h3 style="font-size: 1.45rem; color: var(--text-dark); margin-bottom: 6px; font-weight: 700;" id="apptModalTitle">
+        Thank You! 😁
+      </h3>
+      
+      <p style="font-size: 0.92rem; color: #475569; line-height: 1.5; margin-bottom: 16px;" id="apptModalMessage">
+        We are so happy to receive your appointment request! Dr. Pranavkumar K. Gosavi & our team at Manjul Dental Clinic look forward to giving you a bright, healthy smile. 😁✨
+      </p>
+
+      <!-- SCREENSHOT NOTICE BADGE -->
+      <div style="background: #fef3c7; border: 1px dashed #f59e0b; color: #92400e; border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; gap: 8px; text-align: left;">
+        <i class="fas fa-camera" style="font-size: 1.2rem; color: #d97706; flex-shrink: 0;"></i>
+        <span><strong>Please take a screenshot</strong> of this appointment booking slip for your reference when visiting the clinic!</span>
+      </div>
+
+      <!-- BOOKING SLIP DETAILS -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; text-align: left; margin-bottom: 20px; font-size: 0.88rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 8px;">
+          <span style="color: #64748b;"><i class="fas fa-ticket" style="color: var(--primary); margin-right: 6px;"></i> Booking ID:</span>
+          <strong style="color: var(--primary); font-weight: 700;" id="apptModalId">APT-XXXXX</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span style="color: #64748b;"><i class="fas fa-user" style="color: var(--primary); margin-right: 6px;"></i> Patient Name:</span>
+          <strong style="color: #0f172a;" id="apptModalName">-</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span style="color: #64748b;"><i class="fas fa-clinic-medical" style="color: var(--primary); margin-right: 6px;"></i> Clinic:</span>
+          <strong style="color: #0f172a;" id="apptModalClinic">-</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span style="color: #64748b;"><i class="fas fa-calendar" style="color: var(--primary); margin-right: 6px;"></i> Date & Time:</span>
+          <strong style="color: #0f172a;" id="apptModalDateTime">-</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: #64748b;"><i class="fas fa-tooth" style="color: var(--primary); margin-right: 6px;"></i> Service:</span>
+          <strong style="color: #0f172a;" id="apptModalService">-</strong>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-full" onclick="closeAppointmentModal()" style="padding: 12px; font-size: 0.95rem; font-weight: 600; width: 100%;">
+        <i class="fas fa-check-circle"></i> Got It & Close
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
